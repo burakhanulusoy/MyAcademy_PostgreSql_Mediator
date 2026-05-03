@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MyAcademyMediator.MediatorPattern.Queries.CategoryQueries;
-using System.Threading.Tasks;
 
 namespace MyAcademyMediator.Areas.Admin.Controllers
 {
@@ -14,5 +13,16 @@ namespace MyAcademyMediator.Areas.Admin.Controllers
             var items = await _mediator.Send(new GetCategoriesQuery()); 
             return View(items);
         }
+
+        public async Task<IActionResult> UpdateCategory(Guid id)
+        {
+
+            var item= await _mediator.Send(new GetCategoryByIdQuery(id));
+            return View(item);
+
+        }
+
+
+
     }
 }
