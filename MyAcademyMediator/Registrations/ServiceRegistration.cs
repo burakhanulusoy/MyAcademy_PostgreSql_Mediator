@@ -25,7 +25,7 @@ namespace MyAcademyMediator.Registrations
             
             //GenericRepository  <> işarteinin nedeni iiçe sürekli entity giriş cısıkıc var degısyor olduğu için :)
 
-            services.AddScoped(typeof(IGenericRepository<>), typeof(IGenericRepository<>));
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 
 
