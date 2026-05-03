@@ -3,6 +3,8 @@ using MyAcademyMediator.Context;
 using MyAcademyMediator.Interceptors;
 using MyAcademyMediator.Repositories;
 using System.Reflection;
+using FluentValidation;
+
 
 namespace MyAcademyMediator.Registrations
 {
@@ -41,6 +43,8 @@ namespace MyAcademyMediator.Registrations
             });
 
 
+            //validasyon registration
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         }
 

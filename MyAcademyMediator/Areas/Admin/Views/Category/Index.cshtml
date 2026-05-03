@@ -1,0 +1,39 @@
+﻿@model List<GetCategoriesQueryResult>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 0;
+}
+
+<table class="table table-bordered table-hover">
+
+    <tr>
+        <th>#</th>
+        <th>Guid Id</th>
+        <th>Kategori Adı</th>
+        <th>İşlemler</th>
+    </tr>
+
+    @foreach(var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@item.Id</td>
+            <td>@item.CategoryName</td>
+            <td>
+                <a class="btn btn-info" href="/Admin/Category/UpdateCategory/@item.Id">Düzenle</a>
+                <a class="btn btn-danger" href="/Admin/Category/DeleteCategory/@item.Id">Sil</a>
+
+            </td>
+        </tr>
+
+
+    }
+
+
+
+</table>
+
+
+<a class="btn btn-primary" href="/Admin/Category/CreateCategory">Yeni Kategori Oluştur</a>

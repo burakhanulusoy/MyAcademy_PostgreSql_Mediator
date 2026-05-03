@@ -1,9 +1,14 @@
+using MyAcademyMediator.Filters;
 using MyAcademyMediator.Registrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options=>
+{
+    options.Filters.Add<ValidationExceptionFilter>();
+
+});
 builder.Services.AddServiceRegistrationExt(builder.Configuration);
 
 

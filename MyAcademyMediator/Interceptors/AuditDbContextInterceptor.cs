@@ -32,7 +32,7 @@ namespace MyAcademyMediator.Interceptors
                     eventData.Context.Entry(baseEntity).Property(x => x.CreatedAt).IsModified = false;
                 }
 
-                if (entry.State is EntityState.Added)
+                if (entry.State is EntityState.Deleted)
                 {
                     entry.State=EntityState.Modified;
                     eventData.Context.Entry(baseEntity).Property(x => x.IsDeleted).CurrentValue = true;
