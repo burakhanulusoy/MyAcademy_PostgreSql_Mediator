@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using MyAcademyMediator.Context;
 using MyAcademyMediator.Interceptors;
 using MyAcademyMediator.Repositories;
-using System.Reflection;
-using FluentValidation;
 using MyAcademyMediator.Repositories.ProductRepository;
 using MyAcademyMediator.UOW;
+using System.Reflection;
 
 
 namespace MyAcademyMediator.Registrations
@@ -42,7 +42,7 @@ namespace MyAcademyMediator.Registrations
                 //içinde bulundugun katmanda olan tum handlerın registration işleminı yapıyor
                 options.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
                 //nereden bilecek dersen IRequestHandler ile handlerları işaretledik oradan tanıyaacak
-
+              
             });
 
 
