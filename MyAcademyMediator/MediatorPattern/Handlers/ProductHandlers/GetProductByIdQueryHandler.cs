@@ -1,7 +1,6 @@
 ﻿using Mapster;
 using MediatR;
 using MyAcademyMediator.MediatorPattern.Queries.ProductQueries;
-using MyAcademyMediator.MediatorPattern.Results.CategoryResults;
 using MyAcademyMediator.MediatorPattern.Results.ProductResults;
 using MyAcademyMediator.Repositories.ProductRepository;
 

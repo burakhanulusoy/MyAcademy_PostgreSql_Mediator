@@ -2,7 +2,7 @@
 
 namespace MyAcademyMediator.MediatorPattern.Commands.ProductCommands;
 
-public record CreateProductCommand(Guid Id,
+public record CreateProductCommand(
                                      string? Name,
                                      string? ImageUrl,
                                      string? Description,
