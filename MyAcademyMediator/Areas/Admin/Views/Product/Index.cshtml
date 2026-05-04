@@ -1,0 +1,51 @@
+﻿@model List<GetProductsQueryResult>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 0;
+}
+
+
+<table class="table table-bordered table-hover">
+
+    <tr>
+
+        <th>#</th>
+        <th>Ürün Adı</th>
+        <th>Ürün Açıklaması</th>
+        <th>Ürün Değeri</th>
+        <th>Ürün Stok Adedi</th>
+        <th>Ürün Kategorisi</th>
+        <th>İşlemler</th>
+    </tr>
+
+
+    @foreach(var product in Model)
+    {
+        <tr>
+
+            <th>#
+                <img src="@product.ImageUrl" style="width:250px;height:250px;" />
+            </th>
+            <th>@product.Name</th>
+            <th>@product.Description</th>
+            <th>@product.Price</th>
+            <th>@product.Stock</th>
+            <th>@product.Category.CategoryName</th>
+            <th>
+
+                <a href="/Admin/Product/UpdateProduct/@product.Id" class="btn btn-info">Düzenle</a>
+                <a href="/Admin/Product/DeleteProduct/@product.Id" class="btn btn-danger">Sil</a>
+
+            </th>
+        </tr>
+
+    }
+
+</table>
+
+<a href="/Admin/Product/CreateProduct" class="btn btn-success">Yeni Proje Oluştur</a>
+
+
+
+

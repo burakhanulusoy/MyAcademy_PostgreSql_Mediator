@@ -4,6 +4,7 @@ using MyAcademyMediator.Interceptors;
 using MyAcademyMediator.Repositories;
 using System.Reflection;
 using FluentValidation;
+using MyAcademyMediator.Repositories.ProductRepository;
 
 
 namespace MyAcademyMediator.Registrations
@@ -29,7 +30,7 @@ namespace MyAcademyMediator.Registrations
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
-
+            services.AddScoped<IProductRepository,ProductRepository>();
 
 
             //Mediator Registration

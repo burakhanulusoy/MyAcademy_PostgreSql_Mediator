@@ -1,0 +1,56 @@
+﻿@model MyAcademyMediator.MediatorPattern.Commands.ProductCommands.CreateProductCommand
+@{
+    ViewData["Title"] = "CreateProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post">
+
+    <div class="mb-3">
+        <label asp-for="Name">Ürün Adı</label>
+        <input class="form-control" placeholder="Ürün adı giriniz" asp-for="Name" type="text" />
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ImageUrl">Görsel URL</label>
+        <input class="form-control" placeholder="Görsel URL'si giriniz" asp-for="ImageUrl" type="text" />
+        <span class="text-danger" asp-validation-for="ImageUrl"></span>
+    </div>
+
+    @* sorun burada Hocam ****************** *@
+
+    <div class="mb-3">  
+        <label asp-for="CategoryId">Kategori Seçiniz</label>
+       <select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-control" required >
+           <option disabled selected>--Kategoriler--</option>
+       </select>
+
+    </div>
+
+
+    <div class="mb-3">
+        <label asp-for="Description">Açıklama</label>
+        <textarea class="form-control" rows="4" placeholder="Ürün açıklaması giriniz" asp-for="Description"></textarea>
+        <span class="text-danger" asp-validation-for="Description"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Price">Fiyat</label>
+        <!-- step="0.01" ondalıklı sayı (kuruş) girilmesine izin verir -->
+        <input class="form-control" placeholder="Fiyat giriniz" asp-for="Price" type="number" step="0.01" />
+        <span class="text-danger" asp-validation-for="Price"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Stock">Stok Adedi</label>
+        <input class="form-control" placeholder="Stok miktarı giriniz" asp-for="Stock" type="number" />
+        <span class="text-danger" asp-validation-for="Stock"></span>
+    </div>
+
+    <!-- Kaydet Butonu -->
+    <div class="mb-3">
+        <button  class="btn btn-primary">Ürünü Kaydet</button>
+    </div>
+
+</form>
