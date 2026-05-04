@@ -3,9 +3,9 @@ using MyAcademyMediator.MediatorPattern.Commands.CategoryCommands;
 
 namespace MyAcademyMediator.Validators.CategoryValidators
 {
-    public class CreateCategoryValidator : AbstractValidator<CreateCategoryCommand>
+    public class UpdateCategoryValidator:AbstractValidator<UpdateCategoryCommand>
     {
-        public CreateCategoryValidator()
+        public UpdateCategoryValidator()
         {
             RuleFor(x => x.CategoryName)
                 .NotEmpty().WithMessage("Kategori adı boş geçilemez!")

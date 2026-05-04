@@ -24,7 +24,7 @@ namespace MyAcademyMediator.Repositories
 
         public async Task<List<TEntity>> GetAllAsync()
         {
-            return await _table.AsNoTracking().ToListAsync();
+            return await _table.AsNoTracking().OrderBy(x=>x.CreatedAt).ToListAsync();
         }
 
         public async Task<TEntity> GetByIdAsync(Guid id)

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.Extensions.DependencyInjection;
 using MyAcademyMediator.Exceptions;
 
 namespace MyAcademyMediator.Filters
@@ -10,27 +11,36 @@ namespace MyAcademyMediator.Filters
     {
         public void OnException(ExceptionContext context)
         {
-            if (context.Exception is not ApiValidationException validationException)
+            // 1. Gelen hata FluentValidation hatası mı?
+            if (context.Exception is ApiValidationException apiException)
             {
-                return;
+                foreach (var error in apiException.Errors)
+                {
+                    context.ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                }
+            }
+            // 2. Yoksa gelen hata senin yeni yazdığın Identity hatası mı?
+            else if (context.Exception is IdentityValidationException identityException)
+            {
+                foreach (var error in identityException.Errors)
+                {
+                    // Identity hataları genel hata olduğu için propertyName kısmına string.Empty veriyoruz
+                    context.ModelState.AddModelError(string.Empty, error.Description);
+                }
+            }
+            // 3. İkisi de değilse (örneğin veritabanı bağlantı hatasıysa) filter bu işe karışmasın
+            else
+            {
+                return; 
             }
 
-            // FluentValidation'ın kendi listesinde dönüyoruz
-            foreach (var error in validationException.Errors)
-            {
-                context.ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
-            }
-
+            // Her iki durumda da sayfayı ve verileri geri döndürme standart işlemimiz çalışır
             var actionName = context.RouteData.Values["action"]?.ToString();
-
-            // ASP.NET Core'da Controller'a doğrudan erişim olmadığı için,
-            // sistemdeki mevcut ModelState'i kullanarak ViewData'yı kendimiz inşa ediyoruz.
             var modelMetadataProvider = context.HttpContext.RequestServices.GetRequiredService<IModelMetadataProvider>();
 
             context.Result = new ViewResult
             {
                 ViewName = actionName,
-                // Hem kullanıcının girdiği form verileri hem de eklediğimiz hatalar View'a taşınmış oluyor
                 ViewData = new ViewDataDictionary(modelMetadataProvider, context.ModelState)
             };
 

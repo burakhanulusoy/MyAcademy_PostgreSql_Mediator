@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Mapster;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MyAcademyMediator.MediatorPattern.Commands.CategoryCommands;
 using MyAcademyMediator.MediatorPattern.Queries.CategoryQueries;
@@ -20,9 +21,23 @@ namespace MyAcademyMediator.Areas.Admin.Controllers
         {
 
             var item= await _mediator.Send(new GetCategoryByIdQuery(id));
-            return View(item);
+
+            var updateItem = item.Adapt<UpdateCategoryCommand>();
+
+            return View(updateItem);
 
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateCategory(UpdateCategoryCommand command)
+        {
+
+            await _mediator.Send(command);
+            return RedirectToAction(nameof(Index));
+
+
+        }
+
 
 
         public IActionResult CreateCategory()
@@ -38,7 +53,12 @@ namespace MyAcademyMediator.Areas.Admin.Controllers
 
         }
 
+        public async Task<IActionResult> DeleteCategory(Guid id)
+        {
+            await _mediator.Send(new RemoveCategoryCommand(id));
+            return RedirectToAction(nameof(Index));
 
+        }
 
 
     }
