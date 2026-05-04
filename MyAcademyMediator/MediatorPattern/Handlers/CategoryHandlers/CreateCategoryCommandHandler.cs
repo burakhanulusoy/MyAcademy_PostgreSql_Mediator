@@ -5,11 +5,13 @@ using MyAcademyMediator.Entities;
 using MyAcademyMediator.Exceptions;
 using MyAcademyMediator.MediatorPattern.Commands.CategoryCommands;
 using MyAcademyMediator.Repositories;
+using MyAcademyMediator.UOW;
 
 namespace MyAcademyMediator.MediatorPattern.Handlers.CategoryHandlers
 {
     public class CreateCategoryCommandHandler(IGenericRepository<Category> _genericRepository
-                                              ,IValidator<CreateCategoryCommand> _validator) : IRequestHandler<CreateCategoryCommand>
+                                              ,IValidator<CreateCategoryCommand> _validator
+                                              ,IUnitOfWork _unitOfWork) : IRequestHandler<CreateCategoryCommand>
     {
         public async Task Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
@@ -24,6 +26,7 @@ namespace MyAcademyMediator.MediatorPattern.Handlers.CategoryHandlers
             var mappedCategory = request.Adapt<Category>();
 
             await _genericRepository.CreateAsync(mappedCategory);
+            await _unitOfWork.SaveChangesAsync();
 
 
         }

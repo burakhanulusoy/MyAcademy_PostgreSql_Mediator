@@ -5,11 +5,13 @@ using MyAcademyMediator.Entities;
 using MyAcademyMediator.Exceptions;
 using MyAcademyMediator.MediatorPattern.Commands.ProductCommands;
 using MyAcademyMediator.Repositories.ProductRepository;
+using MyAcademyMediator.UOW;
 
 namespace MyAcademyMediator.MediatorPattern.Handlers.ProductHandlers
 {
     public class UpdateProductCommentHandler(IProductRepository _productRepository
-                                            ,IValidator<UpdateProductCommand> _validator) : IRequestHandler<UpdateProductCommand>
+                                            ,IValidator<UpdateProductCommand> _validator
+                                            ,IUnitOfWork _unitOfWork) : IRequestHandler<UpdateProductCommand>
     {
         public async Task Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
@@ -24,6 +26,8 @@ namespace MyAcademyMediator.MediatorPattern.Handlers.ProductHandlers
             var mappedProduct = request.Adapt<Product>();
 
             await _productRepository.UpdateAsync(mappedProduct);
+            await _unitOfWork.SaveChangesAsync();
+
         }
     }
 }

@@ -12,14 +12,12 @@ namespace MyAcademyMediator.Repositories
         public async Task CreateAsync(TEntity entity)
         {
             await _context.AddAsync(entity);
-            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Guid id)
         {
             var result = await _table.FindAsync(id);
             _context.Remove(result);
-            await _context.SaveChangesAsync();
         }
 
         public async Task<List<TEntity>> GetAllAsync()
@@ -35,7 +33,6 @@ namespace MyAcademyMediator.Repositories
         public async Task UpdateAsync(TEntity entity)
         {
             _context.Update(entity);
-            await _context.SaveChangesAsync();
         }
     }
 }
