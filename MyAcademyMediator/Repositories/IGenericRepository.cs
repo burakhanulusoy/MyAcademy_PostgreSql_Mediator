@@ -11,5 +11,7 @@ namespace MyAcademyMediator.Repositories
         Task DeleteAsync(Guid id);
         Task CreateAsync(TEntity entity);
 
+
+
     }
 }

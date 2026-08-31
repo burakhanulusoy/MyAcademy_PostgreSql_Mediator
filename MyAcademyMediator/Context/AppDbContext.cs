@@ -18,6 +18,7 @@ namespace MyAcademyMediator.Context
 
                 if (typeof(BaseEntity).IsAssignableFrom(entitiyType.ClrType))
                 {
+                    //SOFT DELETE YAPMAK İÇİN SİLİNENLERİ GETİRMEYİ ENGELLEMEK İÇİN QUERY FILTER KULLANACAĞIZ
                     //wrapper yapıyoruz, yani sorgulara otomatik olarak silinmiş olanları getirme filtresi ekliyoruz
                     //select * from table where IsDeleted = false olanlar gelsin sadece diyeceğiz
                     modelBuilder.Entity(entitiyType.ClrType)

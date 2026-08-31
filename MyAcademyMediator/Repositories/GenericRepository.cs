@@ -28,6 +28,7 @@ namespace MyAcademyMediator.Repositories
         public async Task<TEntity> GetByIdAsync(Guid id)
         {
             return await _table.FindAsync(id);
+
         }
 
         public async Task UpdateAsync(TEntity entity)
