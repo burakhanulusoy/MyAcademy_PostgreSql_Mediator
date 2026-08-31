@@ -3,7 +3,6 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MyAcademyMediator.MediatorPattern.Commands.CategoryCommands;
 using MyAcademyMediator.MediatorPattern.Queries.CategoryQueries;
-using System.Threading.Tasks;
 
 namespace MyAcademyMediator.Areas.Admin.Controllers
 {
@@ -35,10 +34,7 @@ namespace MyAcademyMediator.Areas.Admin.Controllers
             await _mediator.Send(command);
             return RedirectToAction(nameof(Index));
 
-
         }
-
-
 
         public IActionResult CreateCategory()
         {
@@ -59,7 +55,6 @@ namespace MyAcademyMediator.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
 
         }
-
 
     }
 }
