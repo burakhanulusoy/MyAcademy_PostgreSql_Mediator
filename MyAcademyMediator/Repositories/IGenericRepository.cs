@@ -1,4 +1,5 @@
 ﻿using MyAcademyMediator.Entities.Common;
+using System.Linq.Expressions;
 
 namespace MyAcademyMediator.Repositories
 {
@@ -6,6 +7,7 @@ namespace MyAcademyMediator.Repositories
     {
 
         Task<List<TEntity>> GetAllAsync();
+        Task<List<TEntity>> GetAllAsync(params Expression<Func<TEntity, object>>[] includes);
         Task<TEntity> GetByIdAsync(Guid id);
         Task UpdateAsync(TEntity entity);
         Task DeleteAsync(Guid id);

@@ -1,0 +1,49 @@
+﻿@model List<GetCustomersQueryResult>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 0;
+}
+<table class="table table-bordered table-hover">
+
+    <tr>
+        <th>#</th>
+        <th>Ad Soyad</th>
+        <th>Telefon Numarası</th>
+        <th>Şehir</th>
+        <th>Adres</th>
+        <th>
+           Siparişleri
+        </th>
+        <th>İşlemler</th>
+
+    </tr>
+
+
+    @foreach(var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@item.NameSurname</td>
+            <td>@item.PhoneNumber</td>
+            <td>@item.City</td>
+            <td>@item.Address</td>
+            <td>
+                <a href="#" class="btn btn-info">Siparişlerini Görüntüle</a>
+
+            </td>
+            <td>
+                <a href="/Admin/Customer/UpdateCustomer/@item.Id" class="btn btn-primary">Güncelle</a>
+                <a href="/Admin/Customer/DeleteCustomer/@item.Id" class="btn btn-danger">Sil</a>
+            </td>
+
+        </tr>
+    }
+
+
+
+
+</table>
+
+<a href="/Admin/Customer/CreateCustomer" class="btn btn-primary">Oluştur</a>

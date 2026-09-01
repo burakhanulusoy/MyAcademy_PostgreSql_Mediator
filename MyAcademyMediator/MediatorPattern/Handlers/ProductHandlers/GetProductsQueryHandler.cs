@@ -11,7 +11,7 @@ namespace MyAcademyMediator.MediatorPattern.Handlers.ProductHandlers
         public async Task<List<GetProductsQueryResult>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
         {
 
-            var items = await _productRepository.GetProductsWithCategoryAsync();
+            var items = await _productRepository.GetAllAsync(x => x.Category);
             return items.Adapt<List<GetProductsQueryResult>>();
 
         }

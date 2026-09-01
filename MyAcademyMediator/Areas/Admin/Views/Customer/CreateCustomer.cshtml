@@ -1,0 +1,49 @@
+﻿@model CreateCustomerCommand
+
+@{
+    ViewData["Title"] = "CreateCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<form method="post">
+
+
+
+
+
+    <br />
+    <label> Adı</label>
+    <input asp-for="NameSurname" placeholder="Adı Giriniz..." />
+    <span asp-validation-for="NameSurname" class="text-danger"></span>
+
+
+
+    <br />
+    <label>telefon</label>
+    <input asp-for="PhoneNumber" placeholder="Kategori Adı Giriniz..." />
+    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+
+
+    <br />
+    <label>adres Adı</label>
+    <input asp-for="Address" placeholder="Kategori Adı Giriniz..." />
+    <span asp-validation-for="Address" class="text-danger"></span>
+
+
+
+    <br />
+    <label>şehir Adı</label>
+    <input asp-for="City" placeholder="Kategori Adı Giriniz..." />
+    <span asp-validation-for="City" class="text-danger"></span>
+
+
+    <button class="btn btn-success">kaydet</button>
+
+
+
+
+
+</form>
+
